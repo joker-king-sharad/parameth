@@ -5,7 +5,6 @@ Often when you are busting a directory for common files,
 you can identify scripts (for example test.php) that look like they need
 to be passed an unknown parameter. This hopefully can help find them.
 
-![example scan](https://pbs.twimg.com/media/CsHJsjsXEAAOgxK.jpg)
 
 The ***-off*** flag allows you to specify an offset (helps with dynamic pages)
 so for example, if you were getting alternating response sizes of 4444 and
@@ -14,16 +13,15 @@ so for example, if you were getting alternating response sizes of 4444 and
 # Installation
 
 ```shell
-virtualenv venv
-. ./venv/bin/activate
-pip install -u -r requirements.txt
+pip install -r requirements.txt
 ```
 
 
 # Usage
 
 ```
-usage: parameth.py [-h] [-v] [-u URL] [-p PARAMS] [-H HEADER] [-a AGENT]
+usage:
+python3 parameth.py [-h] [-v] [-u URL] [-p PARAMS] [-H HEADER] [-a AGENT]
                    [-t THREADS] [-off VARIANCE] [-diff DIFFERENCE] [-o OUT]
                    [-P PROXY] [-x IGNORE] [-s SIZEIGNORE] [-d DATA]
                    [-i IGMETH] [-c COOKIE] [-T TIMEOUT]
