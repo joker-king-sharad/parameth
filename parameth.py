@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 import multiprocessing
 import argparse
@@ -9,7 +9,7 @@ import time
 from numpy import array_split
 from fuzzywuzzy import fuzz
 
-#If request errors are displaying just comment line below
+# If request errors are displaying, just comment the line below
 requests.packages.urllib3.disable_warnings()
 #########################################################
 _GETstatus = 0
@@ -22,16 +22,16 @@ _POSTdata = {}
 _paramValue = 'discobiscuits'
 
 def version_info():
-	VER = 'parameth v1.337 - \033[033mfind parameters and craic rocks\033[0m'
-	AUTH = 'Author: \033[033mCiaran McNally - https://securit.ie/\033[0m'
-	print '\033[1;34m                                       |   |'
-	print '  __ \\   _` |  __| _` | __ `__ \\   _ \\ __| __ \\'
-	print '  |   | (   | |   (   | |   |   |  __/ |   | | |'
-	print '  .__/ \\__,_|_|  \\__,_|_|  _|  _|\\___|\\__|_| |_|'
-	print '  _|\033[0m'
-	print VER
-	print AUTH
-	print '\033[1;30m================================================\033[0m'
+    VER = 'parameth v1.337 - \033[033mfind parameters and craic rocks\033[0m'
+    AUTH = 'Author: \033[033mCiaran McNally - https://securit.ie/\033[0m'
+    print('\033[1;34m                                       |   |')
+    print('  __ \\   _` |  __| _` | __ `__ \\   _ \\ __| __ \\')
+    print('  |   | (   | |   (   | |   |   |  __/ |   | | |')
+    print('  .__/ \\__,_|_|  \\__,_|_|  _|  _|\\___|\\__|_| |_|')
+    print('  _|\033[0m')
+    print(VER)
+    print(AUTH)
+    print('\033[1;30m================================================\033[0m')
 
 def getHeaderObj(headers):
         newh = {}
@@ -152,8 +152,8 @@ def requestor(url, parameter, header, agent, variance, proxy, ignore,
 				subvar = len(gcontent) - variance
 
 				if g.status_code != _GETstatus and statusMatch(ignore, str(g.status_code)):
-					print '\033[032mGET(status)\033[0m: '+i+' | '+str(_GETstatus)+'->',
-					print str(g.status_code)+' ( '+newrl+' )'
+					print ('\033[032mGET(status)\033[0m: '+i+' | '+str(_GETstatus)+'->',)
+					print (str(g.status_code)+' ( '+newrl+' )')
 					if out != 'out':
 						strvar = 'GET(status) '+i+' '+str(g.status_code)+' '+newrl
 						printOut(out, strvar)
@@ -161,8 +161,8 @@ def requestor(url, parameter, header, agent, variance, proxy, ignore,
 				if statusMatch(ignore, str(g.status_code)):
 					if len(gcontent) != _GETresponseSize and len(gcontent) != size:
 						if len(gcontent) >= plusvar or len(gcontent) <= subvar:
-							print '\033[032mGET(size)\033[0m: '+i+' | '+str(_GETresponseSize),
-							print '->' +str(len(gcontent))+ ' ( '+newrl+' )'
+							print ('\033[032mGET(size)\033[0m: '+i+' | '+str(_GETresponseSize),)
+							print ('->' +str(len(gcontent))+ ' ( '+newrl+' )')
 							if out != 'out':
 								strvar = 'GET(size) '+i+' '+str(len(gcontent))+' '+newrl
 								printOut(out, strvar)
@@ -170,8 +170,8 @@ def requestor(url, parameter, header, agent, variance, proxy, ignore,
 				gdiff = percentDiff(_GETresponse, gcontent)
 				if diff != 100 and diff < 100:
 					if gdiff < diff and gdiff != 0:
-						print '\033[032mGET(DIFF)\033[0m: '+i+' | '+str(diff),
-						print '->' +str(gdiff)+ ' ( '+newrl+' )'
+						print ('\033[032mGET(DIFF)\033[0m: '+i+' | '+str(diff),)
+						print ('->' +str(gdiff)+ ' ( '+newrl+' )')
 						if out != 'out':
 							strvar = 'GET(diff) '+i+' '+str(gdiff)+' '+newrl
 							printOut(out, strvar)
@@ -187,8 +187,8 @@ def requestor(url, parameter, header, agent, variance, proxy, ignore,
 				subvar = len(pcontent) - variance
 
 				if p.status_code != _POSTstatus and statusMatch(ignore, str(p.status_code)):
-					print '\033[032mPOST(status)\033[0m: '+i+' | '+str(_POSTstatus)+'->',
-					print str(p.status_code)+' ( '+url+' )'
+					print ('\033[032mPOST(status)\033[0m: '+i+' | '+str(_POSTstatus)+'->',)
+					print (str(p.status_code)+' ( '+url+' )')
 					if out != 'out':
 						strvar = 'POST(status) '+i+' '+str(p.status_code)+' '+url
 						printOut(out, strvar)
@@ -196,8 +196,8 @@ def requestor(url, parameter, header, agent, variance, proxy, ignore,
 				if statusMatch(ignore, str(p.status_code)):
 					if len(pcontent) != _POSTresponseSize and len(pcontent) != size:
 						if len(pcontent) >= plusvar or len(pcontent) <= subvar:
-							print '\033[032mPOST(size)\033[0m: '+i+' | '+str(_POSTresponseSize),
-							print '->' +str(len(pcontent))+ ' ( '+url+' )'
+							print ('\033[032mPOST(size)\033[0m: '+i+' | '+str(_POSTresponseSize),)
+							print ('->' +str(len(pcontent))+ ' ( '+url+' )')
 							if out != 'out':
 								strvar = 'POST(size) '+i+' '+str(len(pcontent))+' '+url
 								printOut(out, strvar)
@@ -205,18 +205,18 @@ def requestor(url, parameter, header, agent, variance, proxy, ignore,
 				pdiff = percentDiff(_POSTresponse, pcontent)
 				if diff != 100 and diff < 100:
 					if pdiff < diff and gdiff !=0:
-						print '\033[032mPOST(DIFF)\033[0m: '+i+' | '+str(diff),
-						print '->' +str(pdiff)+ ' ( '+newrl+' )'
+						print ('\033[032mPOST(DIFF)\033[0m: '+i+' | '+str(diff),)
+						print ('->' +str(pdiff)+ ' ( '+newrl+' )')
 						if out != 'out':
 							strvar = 'GET(diff) '+i+' '+str(pdiff)+' '+newrl
 							printOut(out, strvar)
 
 		except requests.exceptions.Timeout:
-			print 'Request Timed out on parameter "'+i+'"'
+			print ('Request Timed out on parameter "'+i+'"')
 		except requests.exceptions.ConnectionError:
-			print 'Connection Error on parameter "'+i+'"'
+			print ('Connection Error on parameter "'+i+'"')
 		except requests.exceptions.TooManyRedirects:
-			print 'Redirect loop on parameter "'+i+'"'		
+			print ('Redirect loop on parameter "'+i+'"'		)
 	
 
 def getBase(url, header, agent, variance, proxy, data, igmeth, cookie):
@@ -248,10 +248,10 @@ def getBase(url, header, agent, variance, proxy, data, igmeth, cookie):
 	_POSTdata = getParamObj(get)
 	if len(data) != 0:
 		_POSTdata.update(getParamObj(data))
-	print 'Establishing base figures...'
+	print ('Establishing base figures...')
 	if igmeth != 'p':
-		print '\033[031mPOST data: \033[0m'+getParamStr(_POSTdata)
-	print '\033[031mOffset value: \033[0m'+str(variance)
+		print ('\033[031mPOST data: \033[0m'+getParamStr(_POSTdata))
+	print ('\033[031mOffset value: \033[0m'+str(variance))
 	try:
 		if igmeth != 'g':
 			g = requests.get(url, timeout=10, headers=headers, verify=False,
@@ -260,8 +260,8 @@ def getBase(url, header, agent, variance, proxy, data, igmeth, cookie):
 			_GETstatus = g.status_code
 			_GETresponse = g.content
 			_GETresponseSize = len(g.content)
-			print '\033[031mGET: content-length->\033[0m '+str(len(g.content)),
-			print '\033[031m status->\033[0m '+str(g.status_code)
+			print ('\033[031mGET: content-length->\033[0m '+str(len(g.content)),)
+			print ('\033[031m status->\033[0m '+str(g.status_code))
 	
 		if igmeth != 'p':
 			p = requests.post(url_base, timeout=10, headers=headers, 
@@ -271,18 +271,18 @@ def getBase(url, header, agent, variance, proxy, data, igmeth, cookie):
 			_POSTstatus = p.status_code
 			_POSTresponse = p.content
 			_POSTresponseSize = len(p.content)
-			print '\033[031mPOST: content-length->\033[0m '+str(len(p.content)),
-			print '\033[031m status->\033[0m '+str(p.status_code)
+			print ('\033[031mPOST: content-length->\033[0m '+str(len(p.content)),)
+			print ('\033[031m status->\033[0m '+str(p.status_code))
 		
 		if _POSTstatus != _GETstatus and igmeth != 'p' and igmeth != 'g':
-			print 'POST and GET are different sizes'
+			print ('POST and GET are different sizes')
 
 	except requests.exceptions.Timeout:
-		print 'Request Timed out!'
+		print ('Request Timed out!')
 	except requests.exceptions.ConnectionError:
-		print 'Connection Error!'
+		print ('Connection Error!')
 	except requests.exceptions.TooManyRedirects:
-		print 'Redirect loop!'
+		print ('Redirect loop!')
 	
 
 if __name__ == '__main__':
@@ -329,12 +329,12 @@ if __name__ == '__main__':
 		version_info()
 		getBase(args.url, args.header, args.agent, args.variance, args.proxy, 
 				args.data, args.igmeth, args.cookie)
-		print 'Scanning it like you own it...'	
+		print ('Scanning it like you own it...'	)
 		try:
 			with open(args.params, "r") as f:
 				params = f.read().splitlines()
 		except IOError:
-			print "IOError: Your file is a sex offender."
+			print ("IOError: Your file is a sex offender.")
 		threads = []
 		splitlist = list(split_params(params, args.threads))
 		for i in range(0, args.threads):
@@ -349,7 +349,7 @@ if __name__ == '__main__':
 			for p in threads:
 				p.join()
 		except KeyboardInterrupt:
-			print 'Scagging out scanner...'
+			print ('Scagging out scanner...')
 			for p in threads:
 				p.terminate()
 			sys.exit(0)
